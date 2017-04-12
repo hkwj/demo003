@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+*{
+	margin:0; padding:0;
+}
+#light{
+	width:100px; height:100px; 
+	background:#f90; border-radius:50%;
+	box-shadow:0px 0px 100px #f96;
+	position:absolute; left:0; top:0;
+}
+
+p{
+	height:50px; text-align:center; line-height:50px;
+	font-size:40px; font-weight:bold; margin-top:200px;
+	color:#000; text-shadow:0px 0px 0px #000;
+}
+</style>
+
+</head>
+
+<body>
+<div id="light"></div>
+<p>呵呵呵</p>
+
+
+
+
+
+<script>
+var oL=document.querySelector('#light');
+var oP=document.querySelector('p');
+document.onmousemove=function(ev){
+	oL.style.left=ev.pageX-oL.offsetWidth/2+'px';
+	oL.style.top=ev.pageY-oL.offsetHeight/2+'px';
+
+	var x=(oP.offsetLeft+oP.offsetWidth/2)-ev.pageX;
+	var y=(oP.offsetTop+oP.offsetHeight/2)-ev.pageY;
+
+	var dis=Math.sqrt(x*x+y*y);
+	oP.style.textShadow=x/3+'px '+y/3+'px '+dis/20+'px #000';
+}
+</script>
+</body>
+</html>
