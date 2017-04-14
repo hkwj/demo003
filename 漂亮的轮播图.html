@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+*{
+	margin:0; padding:0; list-style:none;
+}
+ul{
+	width:302px; height:302px; margin:0 auto;
+	position:relative; -webkit-transform-style:preserve-3d;
+}
+	ul li{
+		width:300px; height:300px; background:#ccc;
+		border:1px solid #ccc; text-align:center;
+		line-height:300px; font-size:30px; font-weight:bold;
+		color:#fff; opacity:0; position:absolute;
+		-webkit-transition:1s all ease;
+	}
+	.l2{
+		opacity:0; z-index:3; -webkit-transform:perspective(800px) translate(-250px,0) rotateY(36deg);
+	}
+	.l1{
+		opacity:1; z-index:4; -webkit-transform:perspective(800px) translate(-200px,0) rotateY(36deg);
+	}
+	.cur{
+		opacity:1; z-index:5;
+	}
+	.r1{
+		opacity:1; z-index:4; -webkit-transform:perspective(800px) translate(200px,0) rotateY(-36deg);
+	}
+	.r2{
+		opacity:0; z-index:3; -webkit-transform:perspective(800px) translate(250px,0) rotateY(-36deg);
+	}
+</style>
+
+</head>
+
+<body>
+<a href="javascript:;" id="prev"><--</a>
+<a href="javascript:;" id="next">--></a>
+
+<ul>
+	<li class="cur">1</li>
+	<li class="r1">2</li>
+	<li class="r2">3</li>
+	<li>4</li>
+	<li>5</li>
+	<li>6</li>
+	<li>7</li>
+	<li>8</li>
+	<li>9</li>
+	<li>10</li>
+	<li class="l2">11</li>
+	<li class="l1">12</li>
+</ul>
+
+<script>
+var oPrev=document.querySelector('#prev');
+	var oNext=document.querySelector('#next');
+	var aLi=document.querySelectorAll('ul li');
+	var aClass=[];
+	var bOk=false;
+	for(var i=0; i<aLi.length; i++){
+		aClass[i]=aLi[i].className;
+		aLi[i].style.background='rgb('+rnd()+','+rnd()+','+rnd()+')';
+	}
+
+	function rnd(){
+		return parseInt(Math.random()*(255-1)+1);
+	}
+console.log(rnd());
+	oPrev.onclick=function(){
+		if(bOk) return;
+		bOk=true;
+		aClass.push(aClass.shift());
+		tab();
+	}
+	oNext.onclick=function(){
+		if(bOk) return;
+		bOk=true;
+		aClass.unshift(aClass.pop());
+		tab();
+	}
+
+	function tab(){
+		var oCur=document.querySelector('.cur');
+		for(var i=0; i<aLi.length; i++){
+			aLi[i].className=aClass[i];
+		}
+		function tranEnd(){
+			oCur.removeEventListener('transitionend',tranEnd,false);
+			bOk=false;
+		}
+		oCur.addEventListener('transitionend',tranEnd,false);
+	}
+
+</script>
+</body>
+</html>
