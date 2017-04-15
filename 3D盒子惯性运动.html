@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+*{
+	margin:0; padding:0; list-style:none;
+}
+#box{
+	width:200px; height:200px; margin:100px auto;
+	position:relative; -webkit-transform-style:preserve-3d;
+	-webkit-transform:perspective(800px) rotateX(0deg) rotateY(0deg);
+}
+
+	#box div{
+		width:100%; heigth:100%; position:absolute;
+		text-align:center; line-height:200px; font-szie:28px;
+	}
+	.back{
+		background:rgba(0,255,255,0.5);
+		-webkit-transform:translateZ(-100px);
+	}
+	.front{
+		background:rgba(0,0,255,0.5);
+		-webkit-transform:translateZ(100px);
+	}
+	.top{
+		background:rgba(255,0,0,0.5);
+		-webkit-transform:translate(0,-100px) rotateX(90deg);
+	}
+	.bottom{
+		background:rgba(255,255,0,0.5);
+		-webkit-transform:translate(0,100px) rotateX(-90deg);
+	}
+	.left{
+		background:rgba(100,200,0,0.5);
+		-webkit-transform:translate(-100px,0) rotateY(-90deg);
+	}
+	.right{
+		background:rgba(200,100,100,0.5);
+		-webkit-transform:translate(100px,0) rotateY(90deg);
+	}
+
+
+</style>
+
+</head>
+
+<body>
+<div id="box">
+	<div class="front">front</div>
+	<div class="back">back</div>
+	<div class="top">top</div>
+	<div class="bottom">bottom</div>
+	<div class="left">left</div>
+	<div class="right">right</div>
+</div>
+
+
+<script>
+var oBox=document.querySelector('#box');
+	var x=0;
+	var y=0;
+	var iSpeedX=0;
+	var iSpeedY=0;
+	var lastX=0;
+	var lastY=0;
+	var timer=null;
+	oBox.onmousedown=function(ev){
+		clearInterval(timer);
+		var disX=ev.pageX-y;
+		var disY=ev.pageY-x;
+		document.onmousemove=function(ev){
+			x=ev.pageY-disY;
+			y=ev.pageX-disX;
+			oBox.style.WebkitTransform='perspective(800px) rotateX('+-x/3+'deg) rotateY('+y/3+'deg)';
+			iSpeedX=ev.pageX-lastX;
+			iSpeedY=ev.pageY-lastY;
+			lastX=ev.pageX;
+			lastY=ev.pageY;
+		}
+		document.onmouseup=function(){
+			document.onmousemove=document.onmouseup=null;
+			clearInterval(timer);
+			timer=setInterval(function(){
+				iSpeedX*=0.95;
+				iSpeedY*=0.95;
+				x+=iSpeedY;
+				y+=iSpeedX;
+				oBox.style.WebkitTransform='perspective(800px) rotateX('+-x/3+'deg) rotateY('+y/3+'deg)';
+				if(Math.abs(iSpeedX)<1) iSpeedX=0;
+				if(Math.abs(iSpeedY)<1) iSpeedY=0;
+				if(iSpeedX==0 && iSpeedY==0){
+					clearInterval(timer);
+				}
+			},30)
+		}
+		return false;
+	}
+</script>
+</body>
+</html>
