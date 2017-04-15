@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+*{
+	margin:0; padding:0; list-style:none;
+}
+body{
+	background:#000;
+}
+ul{
+	width:133px; height:200px; margin:200px auto;
+	position:relative; -webkit-transform-style:preserve-3d;
+	-webkit-transform:perspective(800px) rotateX(0deg) rotateY(0deg);
+}
+ul li{
+	width:133px; height:200px; position:absolute;
+	top:0; left:0;
+	-webkit-transform:rotateY(0deg) translateZ(0deg);
+	border-radius:15px; overflow:hidden;
+	box-shadow:0px 0px 20px #fff;
+}
+ul li img{
+	background:#ccc;
+	width:100%; height:100%;
+}
+
+
+</style>
+
+</head>
+
+<body>
+<ul>
+	<li><img src="" alt=""></li>
+	<li><img src="" alt=""></li>
+	<li><img src="" alt=""></li>
+	<li><img src="" alt=""></li>
+	<li><img src="" alt=""></li>
+	<li><img src="" alt=""></li>
+	<li><img src="" alt=""></li>
+	<li><img src="" alt=""></li>
+	<li><img src="" alt=""></li>
+	<li><img src="" alt=""></li>
+	<li><img src="" alt=""></li>
+</ul>
+
+
+<script>
+function getStyle(obj,sName){
+	return (obj.currentStyle||getComputedStyle(obj,false))[sName];
+}
+	var oUl=document.querySelector('ul');
+	var aLi=oUl.querySelectorAll('li');
+	for(var i=0; i<aLi.length; i++){
+		aLi[i].style.WebkitTransition='1s all ease '+(11-i)*100+'ms';
+		aLi[i].style.WebkitTransform='rotateY('+i*360/11+'deg) translateZ(350px)';
+	}
+	var x=0;
+	var y=0;
+	oUl.onmousedown=function(ev){
+		var disX=ev.clientX-y;
+		var disY=ev.clientY-x;
+		document.onmousemove=function(ev){
+			x=ev.pageY-disY;
+			y=ev.pageX-disX;
+			oUl.style.WebkitTransform='perspective(800px) rotateX('+-x/5+'deg) rotateY('+y/5+'deg)';
+		}
+		document.onmouseup=function(){
+			document.onmouseup=document.onmousemove=null;
+		}
+		return false;
+	}
+</script>
+</body>
+</html>
