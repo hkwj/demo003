@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+<style>
+*{ margin:0; padding:0; list-style:none;}
+</style>
+</head>
+<body>
+<p class="demo">demo 0</p>
+<p class="demo">demo 1</p>
+<p class="demo aaa">demo 2</p>
+<p class="demo">demo 3</p>
+<p class="demo">demo 4</p>
+
+
+<script src="https://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	$('.aaa').siblings().css('background','yellow');
+	$('.aaa').prevAll().css('width','50%');
+	$('.aaa').prev().css('width','80%');
+	$('.aaa').nextAll().css('background','#eee');
+	$('.aaa').next().css('background','#ccc');
+})
+
+</script>
+</body>
+</html>
