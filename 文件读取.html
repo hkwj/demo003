@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        div {
+            width: 400px;
+            height: 300px;
+            background: #ccc;
+            border: 1px solid #000;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -150px;
+            margin-left: -200px;
+            text-align: center;
+            line-height: 300px;
+            font-size: 30px;
+            display: none;
+        }
+
+        #txt1 {
+            width: 400px;
+            height: 300px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+<textarea name="" id="txt1"></textarea>
+<div>请将文件拖放到此处</div>
+
+<script>
+    var timer = null;
+    var oDiv = document.querySelector('div');
+    var oTxt = document.querySelector('#txt1');
+    document.ondragover = function () {
+        oDiv.style.display = 'block';
+        clearTimeout(oDiv.timer);
+        oDiv.timer = setTimeout(function () {
+            oDiv.style.dislay = 'none';
+        }, 300)
+    }
+
+    oDiv.ondragenter = function () {
+        oDiv.innerHTML = 'release mouse';
+    }
+    oDiv.ondragleave = function () {
+        oDiv.innerHTML = 'drag file to here';
+    }
+    oDiv.ondragover = function () {
+        return false;
+    }
+
+    oDiv.ondrop = function (ev) {
+        var oFile = ev.dataTransfer.files[0];
+        var reader = new FileReader();
+        reader.onload = function () {
+            oTxt.value = this.result;
+        }
+        reader.readAsText(oFile);
+        return false;
+    }
+</script>
+</body>
+</html>
