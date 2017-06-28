@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset= "UTF-8">
+<style>
+*{margin:0; padding:0; list-style:none;}
+
+li{
+	width:114px; height:140px; background:#ccc;
+	float:left; margin-right:10px;
+}
+</style>
+
+</head>
+<body>
+<ul>
+	<li></li>
+	<li></li>
+	<li></li>
+</ul>
+
+
+<script src="work/jquery-1.7.2.js"></script>
+<script>
+var aLi=document.getElementsByTagName('li');
+for(var i=0; i<aLi.length; i++){
+	aLi[i].onOff=true;
+	aLi[i].onclick=function(){
+		if(this.onOff){
+			this.style.background='red';
+			this.onOff=false;
+		} else {
+			this.style.background="#ccc";
+			this.onOff=true;
+		}
+	}
+}
+
+
+
+</script>
+</body>
+</html> 
