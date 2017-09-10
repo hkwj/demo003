@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset= "UTF-8">
+
+<style>
+p{
+	border:1px solid #ccc; background:#ffc;
+	width:400px; padding:20px; font-size:14px;
+}
+span{
+	background:yellow;
+}
+
+
+</style>
+<script>
+
+
+</script>
+</head>
+<body>
+
+<script>
+
+var str = '第18号台风“泰利”已于昨晚在西北太平洋洋面生成。中央气象台预计，“泰利”将以每小时20公里左右的速度向西偏北方向移动，强度逐渐增强，最强可达强台风级泰利或超强台风级。14日前后将擦过我国台湾岛南部泰利近海海面，之后向粤闽沿海靠近，并可能';
+
+var s = '泰利';
+var i = 0;
+
+// for(; str.indexOf(s,i)!=-1;){
+// 	alert(str.indexOf(s,i));
+// 	i=str.indexOf(s,i)+s.length;
+// }
+while(str.indexOf(s,i)!=-1){
+	alert(str.indexOf(s,i));
+	i=str.indexOf(s,i)+s.length;
+}
+
+
+</script>	
+</body>
+</html> 
