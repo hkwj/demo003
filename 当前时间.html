@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset= "UTF-8">
+
+<style>
+
+
+
+</style>
+<script>
+function toTwo(n){
+	return n<10?'0'+n:''+n;
+};
+
+window.onload=function(){
+	var oBody=document.body;
+	setInterval(fnTime,1000);
+	fnTime();
+	function fnTime(){
+		var myTime=new Date();
+		var iYear=myTime.getFullYear();
+		var iMonth=myTime.getMonth()+1;
+		var iDate=myTime.getDate();
+		var iWeek=myTime.getDay();
+		var iHours=myTime.getHours();
+		var iMin=myTime.getMinutes();
+		var iSec=myTime.getSeconds();
+		var str='';
+		switch(iWeek){
+			case 0:
+				iWeek="星期日";
+				break;
+			case 1:
+				iWeek="星期一";
+				break;
+			case 2:
+				iWeek="星期二";
+				break;
+			case 3:
+				iWeek="星期三";
+				break;
+			case 4:
+				iWeek="星期四";
+				break;
+			case 5:
+				iWeek="星期五";
+				break;
+			case 6:
+				iWeek="星期六";
+				break;
+			default:
+				//do nothing
+		};
+   
+		str=iYear+'年'+iMonth+'月'+iDate+'日'+iWeek+' '+toTwo(iHours)+' : '+toTwo(iMin)+' : '+toTwo(iSec);
+		oBody.innerHTML=str;
+
+	}
+}
+
+</script>
+</head>
+<body>
+
+<p id="time" style="font-size:60px;"></p>
+
+
+<script>
+
+
+
+
+
+
+</script>	
+</body>
+</html> 
